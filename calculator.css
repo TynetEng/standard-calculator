@@ -1,0 +1,49 @@
+.container-fluid, .row {
+  padding: 0px;
+  margin: 0px;
+}
+
+.parent {
+  max-width: 25% !important;
+  height: 590px;
+  margin: auto;
+  border: 10px solid black;
+  border-radius: 20px;
+}
+.parent .gay {
+  margin-left: 27%;
+}
+.parent .panel {
+  border: 4px solid black;
+  height: 250px;
+  font-size: 27px;
+}
+.parent .fill button {
+  border: none;
+  width: 20%;
+  height: 40px;
+  margin: 1px;
+}
+.parent .fill button:focus {
+  background-color: #e98282;
+}
+.parent .file button {
+  border: none;
+  width: 20%;
+  height: 40px;
+  margin: 1px;
+}
+.parent .file button:focus {
+  background-color: #e98282;
+}
+
+@media (max-width: 750px) {
+  .parent {
+    max-width: 90% !important;
+  }
+  .parent .gay {
+    margin-left: 20%;
+  }
+}
+
+/*# sourceMappingURL=calculator.css.map */

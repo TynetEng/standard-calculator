@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="C:\Users\OLUWATOYIN\Desktop\SQI\HTML\Assignment\calculator.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="parent card card-body ">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h5> Calculator</h5>
+                    </div>
+                    <div>
+        
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div>
+                        <i class="fa fa-bars"></i>
+                    </div>
+                    <div class="d-flex align-items-center px-4">
+                        <h5> Standard</h5>
+                        <i class="fa fa-edit px-3"></i>
+                    </div>
+                    <div class="gay">
+                        <i class="fa fa-clock-o"></i>
+                    </div>
+                </div>
+                <div class="panel" id="output">
+                    <!-- <div class="d-flex">
+                        <h3 id="demo"></h3>
+                        <h3 id="signs"></h3>
+                        <h3 id="demo1"></h3>   
+                    </div> -->
+                   <!-- <div>
+                    <h3 id="finalAnswer"></h3>
+                   </div> -->
+                </div>
+                <div class="d-flex justify-content-between py-2 fill">
+                    <button id="MC" value="MC">MC</button>
+                    <button id="MR"value="MR">MR</button>
+                    <button id="M+" value="M+">M+</button>
+                    <button id="M-" value="M-">M-</button>
+                    <button id="MS" value="MS">MS</button>
+                    <button id="M" value="M">M</button>
+                </div>
+                <div class="d-flex justify-content-between file">
+                    <button onclick="operator('%')">%</button>
+                    <button>CE</button>
+                    <button onclick="CLS()">C</button>
+                    <button  onclick="CE()">
+                        <i class="fa fa-arrow-circle-left"></i>
+                    </button>
+                    
+                </div>
+                <div class="d-flex justify-content-between file py-1">
+                    <button onclick="operator('1/x')"><sup>1/x</sup></button>
+                    <button id="root" onclick="operator('rut')">x2</button>
+                    <button id="square" onclick="operator('sqr')">2 <sup>x</sup></button>
+                    <button id="div" onclick="operator('/')">/</button>
+                </div>
+                <div class="d-flex justify-content-between file py-1">
+                    <button id="seven" onclick="number(7)">7</button>
+                    <button id="eight" onclick="number(8)">8</button>
+                    <button id="nine" onclick="number(9)">9</button>
+                    <button id="mult" onclick="operator('*')">*</button>
+                </div>
+                <div class="d-flex justify-content-between file py-1">
+                    <button id="four" onclick="number(4)">4</button>
+                    <button id="five" onclick="number(5)">5</button>
+                    <button id="six" onclick="number(6)">6</button>
+                    <button id="sub" onclick="operator('-')">-</button>
+                </div>
+                <div class="d-flex justify-content-between file py-1">
+                    <button id="one" onclick="number(1)" >1</button>
+                    <button id="two" onclick="number(2)">2</button>
+                    <button id="three" onclick="number(3)">3</button>
+                    <button id="add" onclick="operator('+')">+</button>
+                </div>
+                <div class="d-flex justify-content-between file py-1">
+                    <button onclick="operator('sub')">+/-</button>
+                    <button id="zero" onclick="number(0)">0</button>
+                    <button onclick="number('.')">.</button>
+                    <button id="equal" onclick="result()">=</button>
+                </div>
+        
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let global = null;
+        let firstNumber = "";
+        let oper = "";
+        let secondNumber = "";
+        let save = false;
+        let display = document.getElementById('output');
+        let equal = false;
+
+        function number(digit){
+            if (save){
+                secondNumber+=digit;
+            }
+            if(equal==false){
+                display.innerText+=digit;
+            }
+            else if(equal){
+                display.innerText=""
+                display.innerText+=digit
+                equal = false
+            }
+            
+        }
+
+        function operator(signs){
+            oper=signs
+            firstNumber = display.innerText;
+            display.innerText+=signs
+            save = true
+        }
+
+        function result(){
+            equal = true
+            save = false
+            if(oper=='+'){
+                final= parseInt(firstNumber)+parseInt(secondNumber);
+                display.innerText=final;
+                console.log(firstNumber,oper,secondNumber,final)
+            }
+            else if(oper=='-'){
+                final= parseInt(firstNumber)-parseInt(secondNumber);
+                display.innerText=final;
+                console.log(firstNumber,oper,secondNumber,final)
+            }
+            else if(oper=='*'){
+                final= parseInt(firstNumber)*parseInt(secondNumber);
+                display.innerText=final;
+                console.log(firstNumber,oper,secondNumber,final)
+            }
+            else if(oper=='/'){
+                final= parseInt(firstNumber)/parseInt(secondNumber);
+                display.innerText=final;
+                console.log(firstNumber,oper,secondNumber,final) 
+            }
+            
+            else if(oper=='1/x'){
+                final= 1/parseInt(firstNumber);
+                display.innerText=final;
+                console.log(firstNumber,oper,secondNumber,final) 
+            }
+            else if(oper=='%'){
+                final = (1/parseInt(firstNumber))*100;
+                display.innerText=final;
+            }
+            else if(oper=='sub'){
+                final=parseInt(-(firstNumber))+parseInt(secondNumber);
+                display.innerText= final;
+            }
+            else if(oper=='sqr'){
+                final=parseInt(firstNumber)*parseInt(firstNumber);
+                display.innerText=final;
+            }
+            else if(oper=='rut'){
+            
+                final=parseInt(Math.sqrt(firstNumber))
+                display.innerText=final;
+            }
+
+            firstNumber = null;
+            secondNumber = "";
+        }
+
+        function CLS(){
+            display.innerText=""
+        }
+
+        function CE(){
+            let del= display.innerText.replace(display.innerText.slice(-1),"");
+            display.innerText= del;
+        }
+        
+
+    </script>
+</body>
+</html>
